@@ -6,17 +6,23 @@ const AUTH_SESSION_KEY = '@StoreApp:authSession';
 export async function getAuthSession() {
   const storedSession = await AsyncStorage.getItem(AUTH_SESSION_KEY);
   if (storedSession) {
-    return JSON.parse(storedSession);
+    const { accessToken, user } = JSON.parse(storedSession);
+    const session = { accessToken, user: user || null };
+    await AsyncStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session));
+    return session;
   }
 
   const legacyToken = await AsyncStorage.getItem(AUTH_TOKEN_KEY);
   return legacyToken
-    ? { accessToken: legacyToken, refreshToken: null, user: null }
+    ? { accessToken: legacyToken, user: null }
     : null;
 }
 
-export async function saveAuthSession(session) {
-  await AsyncStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session));
+export async function saveAuthSession({ accessToken, user }) {
+  await AsyncStorage.setItem(
+    AUTH_SESSION_KEY,
+    JSON.stringify({ accessToken, user }),
+  );
   await AsyncStorage.removeItem(AUTH_TOKEN_KEY);
 }
 

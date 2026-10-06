@@ -10,7 +10,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { isAxiosError } from 'axios';
-import { useAuthContext } from '../contexto/authContext';
+import { useAuthContext } from '../context/authContext';
 import BrandHeader from '../components/BrandHeader';
 import InputField from '../components/InputField';
 import PasswordField from '../components/PasswordField';

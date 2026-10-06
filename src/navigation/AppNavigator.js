@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { useAuthContext } from '../contexto/authContext';
+import { useAuthContext } from '../context/authContext';
 import { colors } from '../styles/colors';
 
 const Stack = createNativeStackNavigator();
