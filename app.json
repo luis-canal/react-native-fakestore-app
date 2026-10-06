@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "react-native-fake-store-app",
+    "name": "StoreApp",
     "slug": "react-native-fake-store-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,6 +19,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/InterVariable.ttf"]
+        }
+      ]
+    ]
   }
 }
