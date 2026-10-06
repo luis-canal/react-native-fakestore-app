@@ -10,6 +10,7 @@ import {
   Text,
   TextInput,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Lucide } from '@react-native-vector-icons/lucide';
@@ -24,6 +25,7 @@ const INVALID_CREDENTIALS = 'Username ou senha inválidos.';
 const API_ERROR = 'Não foi possível realizar o login. Tente novamente.';
 
 export default function LoginScreen() {
+  const { height: screenHeight } = useWindowDimensions();
   const navigation = useNavigation();
   const passwordInputRef = useRef(null);
   const isSubmittingRef = useRef(false);
@@ -119,7 +121,15 @@ export default function LoginScreen() {
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.header}>
+        <View
+          style={[
+            styles.header,
+            {
+              height: screenHeight / 2,
+              paddingBottom: screenHeight * 0.1,
+            },
+          ]}
+        >
           <View style={styles.brand}>
             <Lucide
               name="shopping-bag"
@@ -132,7 +142,15 @@ export default function LoginScreen() {
           <Text style={styles.title}>Olá, seja bem-vindo!</Text>
         </View>
 
-        <View style={styles.panel}>
+        <View
+          style={[
+            styles.panel,
+            {
+              minHeight: screenHeight / 2,
+              paddingTop: screenHeight * 0.05,
+            },
+          ]}
+        >
           <View style={styles.content}>
             <View style={styles.form}>
               <View style={styles.field}>
@@ -284,22 +302,20 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   header: {
-    minHeight: 250,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingTop: 28,
-    paddingBottom: 32,
   },
   panel: {
     flexGrow: 1,
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: colors.inputBackground,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     paddingHorizontal: 24,
-    paddingTop: 32,
     paddingBottom: 32,
   },
   content: {
