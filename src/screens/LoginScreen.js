@@ -9,14 +9,12 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { isAxiosError } from 'axios';
+import { useAuthContext } from '../contexto/authContext';
 import BrandHeader from '../components/BrandHeader';
 import InputField from '../components/InputField';
 import PasswordField from '../components/PasswordField';
 import PrimaryButton from '../components/PrimaryButton';
-import { getUsers, login } from '../services/api';
-import { saveAuthToken } from '../utils/authStorage';
 import { colors } from '../styles/colors';
 
 const CONNECTION_ERROR =
@@ -26,7 +24,7 @@ const API_ERROR = 'Não foi possível realizar o login. Tente novamente.';
 
 export default function LoginScreen() {
   const { height: screenHeight } = useWindowDimensions();
-  const navigation = useNavigation();
+  const { entrar } = useAuthContext();
   const passwordInputRef = useRef(null);
   const isSubmittingRef = useRef(false);
   const [username, setUsername] = useState('');
@@ -74,33 +72,17 @@ export default function LoginScreen() {
     setLoading(true);
     Keyboard.dismiss();
 
-    let isLoginRequest = false;
-
     try {
-      const users = await getUsers();
-      const userExists = users.some(
-        (user) => user.username === normalizedUsername,
-      );
-
-      if (!userExists) {
-        setFieldErrors({ username: 'Usuário não encontrado.', password: '' });
-        return;
-      }
-
-      isLoginRequest = true;
-      const result = await login({
+      await entrar({
         username: normalizedUsername,
         password,
       });
-      await saveAuthToken(result.token);
-      navigation.replace('Home');
     } catch (requestError) {
       if (isAxiosError(requestError) && !requestError.response) {
         setError(CONNECTION_ERROR);
       } else if (
-        isLoginRequest &&
         isAxiosError(requestError) &&
-        [401, 403].includes(requestError.response?.status)
+        [400, 401, 403].includes(requestError.response?.status)
       ) {
         setError(INVALID_CREDENTIALS);
       } else {

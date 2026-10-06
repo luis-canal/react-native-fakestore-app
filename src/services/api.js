@@ -1,12 +1,12 @@
 import { create } from 'axios';
 
 const api = create({
-  baseURL: 'https://fakestoreapi.com',
+  baseURL: 'https://dummyjson.com',
 });
 
 export async function getUsers() {
   const response = await api.get('/users');
-  return response.data;
+  return response.data.users;
 }
 
 export async function getProductById(productId) {
