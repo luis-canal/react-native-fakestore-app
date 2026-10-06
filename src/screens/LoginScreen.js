@@ -119,151 +119,154 @@ export default function LoginScreen() {
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.content}>
+        <View style={styles.header}>
           <View style={styles.brand}>
             <Lucide
               name="shopping-bag"
               size={32}
-              color={colors.primary}
+              color={colors.buttonText}
               accessible={false}
             />
-            <Text style={styles.brandName}>StoreApp</Text>
+            <Text style={styles.brandName}>appstore</Text>
           </View>
+          <Text style={styles.title}>Olá, seja bem-vindo!</Text>
+        </View>
 
-          <Text style={styles.title}>Login</Text>
-
-          <View style={styles.form}>
-            <View style={styles.field}>
-              <Text style={styles.label}>Username</Text>
-              <TextInput
-                accessibilityLabel="Username"
-                accessibilityHint={fieldErrors.username || undefined}
-                accessibilityState={{ disabled: loading }}
-                autoCapitalize="none"
-                autoComplete="off"
-                autoCorrect={false}
-                autoFocus
-                editable={!loading}
-                keyboardType="default"
-                onChangeText={handleUsernameChange}
-                onSubmitEditing={() => passwordInputRef.current?.focus()}
-                placeholder="Digite seu username"
-                placeholderTextColor={colors.textSecondary}
-                returnKeyType="next"
-                selectionColor={colors.primary}
-                style={[
-                  styles.input,
-                  fieldErrors.username ? styles.inputError : null,
-                ]}
-                textContentType="none"
-                value={username}
-              />
-              {fieldErrors.username ? (
-                <Text
-                  accessibilityLiveRegion="polite"
-                  accessibilityRole="alert"
-                  style={styles.fieldError}
-                >
-                  {fieldErrors.username}
-                </Text>
-              ) : null}
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>Password</Text>
-              <View
-                style={[
-                  styles.passwordInputContainer,
-                  fieldErrors.password ? styles.inputError : null,
-                ]}
-              >
+        <View style={styles.panel}>
+          <View style={styles.content}>
+            <View style={styles.form}>
+              <View style={styles.field}>
+                <Text style={styles.label}>Username</Text>
                 <TextInput
-                  ref={passwordInputRef}
-                  accessibilityLabel="Password"
-                  accessibilityHint={fieldErrors.password || undefined}
+                  accessibilityLabel="Username"
+                  accessibilityHint={fieldErrors.username || undefined}
                   accessibilityState={{ disabled: loading }}
                   autoCapitalize="none"
                   autoComplete="off"
                   autoCorrect={false}
+                  autoFocus
                   editable={!loading}
-                  onChangeText={handlePasswordChange}
-                  onSubmitEditing={handleLogin}
-                  placeholder="Digite sua senha"
+                  keyboardType="default"
+                  onChangeText={handleUsernameChange}
+                  onSubmitEditing={() => passwordInputRef.current?.focus()}
+                  placeholder="Digite seu username"
                   placeholderTextColor={colors.textSecondary}
-                  returnKeyType="done"
-                  secureTextEntry={!passwordVisible}
+                  returnKeyType="next"
                   selectionColor={colors.primary}
-                  style={styles.passwordInput}
+                  style={[
+                    styles.input,
+                    fieldErrors.username ? styles.inputError : null,
+                  ]}
                   textContentType="none"
-                  value={password}
+                  value={username}
                 />
-                <Pressable
-                  accessibilityLabel={
-                    passwordVisible ? 'Ocultar senha' : 'Mostrar senha'
-                  }
-                  accessibilityRole="button"
-                  accessibilityHint={
-                    passwordVisible
-                      ? 'Oculta a senha digitada'
-                      : 'Mostra a senha digitada'
-                  }
-                  accessibilityState={{ disabled: loading }}
-                  disabled={loading}
-                  hitSlop={8}
-                  onPress={() => setPasswordVisible((visible) => !visible)}
-                  style={styles.visibilityButton}
-                >
-                  <Lucide
-                    name={passwordVisible ? 'eye-off' : 'eye'}
-                    size={22}
-                    color={colors.textSecondary}
-                    accessible={false}
-                  />
-                </Pressable>
+                {fieldErrors.username ? (
+                  <Text
+                    accessibilityLiveRegion="polite"
+                    accessibilityRole="alert"
+                    style={styles.fieldError}
+                  >
+                    {fieldErrors.username}
+                  </Text>
+                ) : null}
               </View>
-              {fieldErrors.password ? (
-                <Text
-                  accessibilityLiveRegion="polite"
-                  accessibilityRole="alert"
-                  style={styles.fieldError}
+
+              <View style={styles.field}>
+                <Text style={styles.label}>Senha</Text>
+                <View
+                  style={[
+                    styles.passwordInputContainer,
+                    fieldErrors.password ? styles.inputError : null,
+                  ]}
                 >
-                  {fieldErrors.password}
-                </Text>
-              ) : null}
+                  <TextInput
+                    ref={passwordInputRef}
+                    accessibilityLabel="Senha"
+                    accessibilityHint={fieldErrors.password || undefined}
+                    accessibilityState={{ disabled: loading }}
+                    autoCapitalize="none"
+                    autoComplete="off"
+                    autoCorrect={false}
+                    editable={!loading}
+                    onChangeText={handlePasswordChange}
+                    onSubmitEditing={handleLogin}
+                    placeholder="Digite sua senha"
+                    placeholderTextColor={colors.textSecondary}
+                    returnKeyType="done"
+                    secureTextEntry={!passwordVisible}
+                    selectionColor={colors.primary}
+                    style={styles.passwordInput}
+                    textContentType="none"
+                    value={password}
+                  />
+                  <Pressable
+                    accessibilityLabel={
+                      passwordVisible ? 'Ocultar senha' : 'Mostrar senha'
+                    }
+                    accessibilityRole="button"
+                    accessibilityHint={
+                      passwordVisible
+                        ? 'Oculta a senha digitada'
+                        : 'Mostra a senha digitada'
+                    }
+                    accessibilityState={{ disabled: loading }}
+                    disabled={loading}
+                    hitSlop={8}
+                    onPress={() => setPasswordVisible((visible) => !visible)}
+                    style={styles.visibilityButton}
+                  >
+                    <Lucide
+                      name={passwordVisible ? 'eye-off' : 'eye'}
+                      size={22}
+                      color={colors.textSecondary}
+                      accessible={false}
+                    />
+                  </Pressable>
+                </View>
+                {fieldErrors.password ? (
+                  <Text
+                    accessibilityLiveRegion="polite"
+                    accessibilityRole="alert"
+                    style={styles.fieldError}
+                  >
+                    {fieldErrors.password}
+                  </Text>
+                ) : null}
+              </View>
             </View>
-          </View>
 
-          {error ? (
-            <Text
-              accessibilityLiveRegion="assertive"
-              accessibilityRole="alert"
-              style={styles.error}
+            {error ? (
+              <Text
+                accessibilityLiveRegion="assertive"
+                accessibilityRole="alert"
+                style={styles.error}
+              >
+                {error}
+              </Text>
+            ) : null}
+
+            <Pressable
+              accessibilityLabel="Entrar"
+              accessibilityRole="button"
+              accessibilityState={{ disabled: loading, busy: loading }}
+              disabled={loading}
+              onPress={handleLogin}
+              style={({ pressed }) => [
+                styles.submitButton,
+                pressed && !loading ? styles.submitButtonPressed : null,
+                loading ? styles.submitButtonDisabled : null,
+              ]}
             >
-              {error}
-            </Text>
-          ) : null}
-
-          <Pressable
-            accessibilityLabel="Entrar"
-            accessibilityRole="button"
-            accessibilityState={{ disabled: loading, busy: loading }}
-            disabled={loading}
-            onPress={handleLogin}
-            style={({ pressed }) => [
-              styles.submitButton,
-              pressed && !loading ? styles.submitButtonPressed : null,
-              loading ? styles.submitButtonDisabled : null,
-            ]}
-          >
-            {loading ? (
-              <ActivityIndicator
-                color={colors.buttonText}
-                accessibilityLabel="Realizando login"
-              />
-            ) : (
-              <Text style={styles.submitButtonText}>Entrar</Text>
-            )}
-          </Pressable>
+              {loading ? (
+                <ActivityIndicator
+                  color={colors.buttonText}
+                  accessibilityLabel="Realizando login"
+                />
+              ) : (
+                <Text style={styles.submitButtonText}>Entrar</Text>
+              )}
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -273,39 +276,55 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
   },
   scrollContent: {
     flexGrow: 1,
+    backgroundColor: colors.primary,
+    paddingTop: 0,
+  },
+  header: {
+    minHeight: 250,
     justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 24,
-    paddingVertical: 32,
+    paddingTop: 28,
+    paddingBottom: 32,
+  },
+  panel: {
+    flexGrow: 1,
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: colors.inputBackground,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    paddingHorizontal: 24,
+    paddingTop: 32,
+    paddingBottom: 32,
   },
   content: {
     width: '100%',
     maxWidth: 440,
-    alignSelf: 'center',
   },
   brand: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
-    marginBottom: 28,
+    marginBottom: 22,
   },
   brandName: {
-    color: colors.textPrimary,
+    color: colors.buttonText,
     fontFamily: 'Inter',
     fontSize: 24,
     fontWeight: '700',
   },
   title: {
-    color: colors.textPrimary,
+    color: colors.buttonText,
     fontFamily: 'Inter',
     fontSize: 28,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 24,
   },
   form: {
     gap: 16,
