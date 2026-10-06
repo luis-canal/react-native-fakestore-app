@@ -4,6 +4,7 @@ import { colors } from '../styles/colors';
 export default function PrimaryButton({
   label = 'Entrar',
   loading = false,
+  loadingLabel = 'Realizando login',
   disabled = false,
   onPress,
   style,
@@ -27,7 +28,7 @@ export default function PrimaryButton({
       {loading ? (
         <ActivityIndicator
           color={colors.buttonText}
-          accessibilityLabel="Realizando login"
+          accessibilityLabel={loadingLabel}
         />
       ) : (
         <Text style={styles.label}>{label}</Text>
