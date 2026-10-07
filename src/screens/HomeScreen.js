@@ -6,21 +6,51 @@ import {
   Text,
   View,
 } from 'react-native';
+
 import { colors } from '../styles/colors';
-import { getProducts } from '../services/api';
+import {
+  getProductCategories,
+  getProducts,
+  getProductsByCategory,
+} from '../services/api';
+
 import ProductCard from '../components/ProductCard';
+import CategoryFilter from '../components/CategoryFilter';
 
 export default function HomeScreen() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
+    async function loadCategories() {
+      try {
+        const data = await getProductCategories();
+        setCategories(data);
+      } catch {
+        setError('Não foi possível carregar as categorias.');
+      }
+    }
+
+    loadCategories();
+  }, []);
+
+  useEffect(() => {
     async function loadProducts() {
       try {
+        setLoading(true);
         setError('');
 
-        const data = await getProducts();
+        let data;
+
+        if (selectedCategory === '') {
+          data = await getProducts();
+        } else {
+          data = await getProductsByCategory(selectedCategory);
+        }
+
         setProducts(data);
       } catch {
         setError('Não foi possível carregar os produtos.');
@@ -30,7 +60,11 @@ export default function HomeScreen() {
     }
 
     loadProducts();
-  }, []);
+  }, [selectedCategory]);
+
+  function renderProduct({ item }) {
+    return <ProductCard product={item} />;
+  }
 
   if (loading) {
     return (
@@ -59,11 +93,15 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <CategoryFilter
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
+      />
+
       <FlatList
         data={products}
-        renderItem={({ item }) => (
-          <ProductCard product={item} />
-        )}
+        renderItem={renderProduct}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.list}
       />
@@ -79,6 +117,7 @@ const styles = StyleSheet.create({
 
   list: {
     padding: 16,
+    paddingTop: 8,
   },
 
   loadingContainer: {
