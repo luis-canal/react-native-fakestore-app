@@ -1,12 +1,13 @@
 import {
   Image,
+  Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import { colors } from '../styles/colors';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onPress }) {
   function formatPrice(price) {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -15,7 +16,10 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={onPress}
+      style={styles.container}
+    >
       <Image
         source={{ uri: product.thumbnail }}
         style={styles.image}
@@ -31,7 +35,7 @@ export default function ProductCard({ product }) {
           {formatPrice(product.price)}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

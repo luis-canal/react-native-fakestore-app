@@ -6,6 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import { useAuthContext } from '../context/authContext';
 import { colors } from '../styles/colors';
+import HomeHeader from '../components/HomeHeader';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +47,16 @@ export default function AppNavigator() {
         }}
       >
         {authenticated ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerShown: true,
+              header: ({ navigation }) => (
+                <HomeHeader navigation={navigation} />
+              ),
+            }}
+          />
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} />
         )}

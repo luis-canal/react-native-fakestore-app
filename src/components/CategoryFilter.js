@@ -64,7 +64,7 @@ export default function CategoryFilter({
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 10,
     paddingBottom: 8,
   },
 

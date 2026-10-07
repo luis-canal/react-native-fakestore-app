@@ -17,7 +17,7 @@ import {
 import ProductCard from '../components/ProductCard';
 import CategoryFilter from '../components/CategoryFilter';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -63,7 +63,16 @@ export default function HomeScreen() {
   }, [selectedCategory]);
 
   function renderProduct({ item }) {
-    return <ProductCard product={item} />;
+    return (
+      <ProductCard
+        product={item}
+        onPress={() =>
+          navigation.navigate('ProductDetails', {
+            id: item.id,
+          })
+        }
+      />
+    );
   }
 
   if (loading) {
