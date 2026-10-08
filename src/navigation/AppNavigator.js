@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
+import InfoGroupScreen from '../screens/InfoGroupScreen';
 import { useAuthContext } from '../context/authContext';
 import { colors } from '../styles/colors';
 import HomeHeader from '../components/HomeHeader';
@@ -47,16 +48,33 @@ export default function AppNavigator() {
         }}
       >
         {authenticated ? (
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              headerShown: true,
-              header: ({ navigation }) => (
-                <HomeHeader navigation={navigation} />
-              ),
-            }}
-          />
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                headerShown: true,
+                header: ({ navigation }) => (
+                  <HomeHeader navigation={navigation} />
+                ),
+              }}
+            />
+            <Stack.Screen
+              name="Informacoes"
+              component={InfoGroupScreen}
+              options={{
+                headerShown: true,
+                title: 'Informações do grupo',
+                headerStyle: { backgroundColor: colors.background },
+                headerTintColor: colors.primary,
+                headerTitleStyle: {
+                  color: colors.textPrimary,
+                  fontFamily: 'Inter',
+                  fontWeight: '700',
+                },
+              }}
+            />
+          </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} />
         )}
