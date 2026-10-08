@@ -65,6 +65,7 @@ export default function AppNavigator() {
               options={{
                 headerShown: true,
                 title: 'Informações do grupo',
+                headerTitleAlign: 'center',
                 headerStyle: { backgroundColor: colors.background },
                 headerTintColor: colors.primary,
                 headerTitleStyle: {
