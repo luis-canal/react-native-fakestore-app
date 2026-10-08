@@ -6,10 +6,12 @@ export default function PrimaryButton({
   loading = false,
   loadingLabel = 'Realizando login',
   disabled = false,
+  variant = 'primary',
   onPress,
   style,
 }) {
   const isDisabled = disabled || loading;
+  const isOutlined = variant === 'outlined';
 
   return (
     <Pressable
@@ -20,18 +22,25 @@ export default function PrimaryButton({
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        pressed && !isDisabled ? styles.buttonPressed : null,
+        isOutlined ? styles.outlinedButton : null,
+        pressed && !isDisabled
+          ? isOutlined
+            ? styles.outlinedButtonPressed
+            : styles.buttonPressed
+          : null,
         isDisabled ? styles.buttonDisabled : null,
         style,
       ]}
     >
       {loading ? (
         <ActivityIndicator
-          color={colors.buttonText}
+          color={isOutlined ? colors.primary : colors.buttonText}
           accessibilityLabel={loadingLabel}
         />
       ) : (
-        <Text style={styles.label}>{label}</Text>
+        <Text style={[styles.label, isOutlined ? styles.outlinedLabel : null]}>
+          {label}
+        </Text>
       )}
     </Pressable>
   );
@@ -49,6 +58,14 @@ const styles = StyleSheet.create({
   buttonPressed: {
     backgroundColor: colors.buttonPressed,
   },
+  outlinedButton: {
+    backgroundColor: colors.inputBackground,
+    borderColor: colors.primary,
+    borderWidth: 1,
+  },
+  outlinedButtonPressed: {
+    backgroundColor: colors.background,
+  },
   buttonDisabled: {
     opacity: 0.8,
   },
@@ -57,5 +74,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 16,
     fontWeight: '600',
+  },
+  outlinedLabel: {
+    color: colors.primary,
   },
 });

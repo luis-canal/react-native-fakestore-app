@@ -50,6 +50,11 @@ export default function LoginScreen() {
     }
   }
 
+  function handleFillAccess() {
+    handleUsernameChange('emilys');
+    handlePasswordChange('emilyspass');
+  }
+
   async function handleLogin() {
     if (isSubmittingRef.current) {
       return;
@@ -185,6 +190,20 @@ export default function LoginScreen() {
               loading={loading}
               onPress={handleLogin}
             />
+
+            {__DEV__ ? (
+              <>
+                <PrimaryButton
+                  label="Preencher acesso"
+                  disabled={loading}
+                  onPress={handleFillAccess}
+                  variant="outlined"
+                />
+                <Text style={styles.developmentNote}>
+                  Disponível somente no ambiente de desenvolvimento.
+                </Text>
+              </>
+            ) : null}
           </View>
         </View>
       </ScrollView>
@@ -231,5 +250,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 14,
     marginTop: 12,
+  },
+  developmentNote: {
+    color: colors.textSecondary,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 8,
   },
 });
