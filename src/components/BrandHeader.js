@@ -5,6 +5,7 @@ import { colors } from '../styles/colors';
 export default function BrandHeader({
   appName = 'appstore',
   greeting = 'Olá, seja bem-vindo!',
+  subtitle,
   style,
 }) {
   return (
@@ -19,6 +20,7 @@ export default function BrandHeader({
         <Text style={styles.brandName}>{appName}</Text>
       </View>
       <Text style={styles.greeting}>{greeting}</Text>
+      {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
     </View>
   );
 }
@@ -49,5 +51,12 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     textAlign: 'center',
+  },
+  subtitle: {
+    color: colors.buttonText,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 6,
   },
 });

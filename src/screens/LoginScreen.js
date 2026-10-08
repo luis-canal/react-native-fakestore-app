@@ -106,6 +106,7 @@ export default function LoginScreen() {
         <BrandHeader
           appName="appstore"
           greeting="Olá, seja bem-vindo!"
+          subtitle="Acesse sua conta para continuar"
           style={[
             styles.header,
             {
