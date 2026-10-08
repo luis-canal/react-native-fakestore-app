@@ -19,7 +19,7 @@ import { colors } from '../styles/colors';
 
 const CONNECTION_ERROR =
   'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.';
-const INVALID_CREDENTIALS = 'Username ou senha inválidos.';
+const INVALID_CREDENTIALS = 'Usuário ou senha inválidos.';
 const API_ERROR = 'Não foi possível realizar o login. Tente novamente.';
 
 export default function LoginScreen() {
@@ -57,7 +57,7 @@ export default function LoginScreen() {
 
     const normalizedUsername = username.trim();
     const nextFieldErrors = {
-      username: normalizedUsername ? '' : 'Username é obrigatório.',
+      username: normalizedUsername ? '' : 'Usuário é obrigatório.',
       password: password ? '' : 'Senha é obrigatória.',
     };
 
@@ -137,10 +137,10 @@ export default function LoginScreen() {
                 editable={!loading}
                 error={fieldErrors.username}
                 keyboardType="default"
-                label="Username"
+                label="Usuário"
                 onChangeText={handleUsernameChange}
                 onSubmitEditing={() => passwordInputRef.current?.focus()}
-                placeholder="Digite seu username"
+                placeholder="Digite seu usuário"
                 placeholderTextColor={colors.textSecondary}
                 returnKeyType="next"
                 selectionColor={colors.primary}
