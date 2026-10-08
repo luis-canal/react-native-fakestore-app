@@ -1,12 +1,14 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+import LinkedInButton from './LinkedInButton';
 import { colors } from '../styles/colors';
 
-export default function DeveloperCard({ name, registration, photo }) {
+export default function DeveloperCard({ name, registration, photo, linkedin }) {
   return (
     <View style={styles.card}>
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.registration}>RA: {registration}</Text>
+        <LinkedInButton name={name} url={linkedin} />
       </View>
       <Image
         source={photo}
