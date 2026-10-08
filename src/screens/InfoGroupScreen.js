@@ -3,10 +3,30 @@ import DeveloperCard from '../components/DeveloperCard';
 import { colors } from '../styles/colors';
 
 const developers = [
-  { id: '1138269', name: 'Eduardo Pagliarini Herter', registration: '1138269' },
-  { id: '1138143', name: 'Guilherme Vassoler Daros', registration: '1138143' },
-  { id: '1138218', name: 'Kaiki André Pauletto', registration: '1138218' },
-  { id: '1137999', name: 'Luis Eduardo Brescansin Canal', registration: '1137999' },
+  {
+    id: '1138269',
+    name: 'Eduardo Pagliarini Herter',
+    registration: '1138269',
+    photo: require('../../assets/fotos_participantes/foto_edu.jpg'),
+  },
+  {
+    id: '1138143',
+    name: 'Guilherme Vassoler Daros',
+    registration: '1138143',
+    photo: require('../../assets/fotos_participantes/foto_gui.png'),
+  },
+  {
+    id: '1138218',
+    name: 'Kaiki André Pauletto',
+    registration: '1138218',
+    photo: require('../../assets/fotos_participantes/foto_kaiki.jpg'),
+  },
+  {
+    id: '1137999',
+    name: 'Luis Eduardo Brescansin Canal',
+    registration: '1137999',
+    photo: require('../../assets/fotos_participantes/foto_luis.jpg'),
+  },
 ];
 
 export default function InfoGroupScreen() {
@@ -28,6 +48,7 @@ export default function InfoGroupScreen() {
             key={developer.id}
             name={developer.name}
             registration={developer.registration}
+            photo={developer.photo}
           />
         ))}
       </View>
