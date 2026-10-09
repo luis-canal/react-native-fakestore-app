@@ -1,4 +1,4 @@
-# StoreApp
+# FakeStoreApp
 
 Aplicativo de loja desenvolvido com React Native e Expo. O app permite fazer login, navegar por produtos e categorias e consultar os detalhes dos produtos. Os dados de autenticação e catálogo são obtidos da API [DummyJSON](https://dummyjson.com/).
 
