@@ -38,22 +38,22 @@ export default function CategoryFilter({
 
         {categories.map((category) => (
           <Pressable
-            key={category.slug}
-            onPress={() => onSelectCategory(category.slug)}
+            key={category}
+            onPress={() => onSelectCategory(category)}
             style={[
               styles.button,
-              selectedCategory === category.slug &&
+              selectedCategory === category &&
                 styles.selectedButton,
             ]}
           >
             <Text
               style={[
                 styles.buttonText,
-                selectedCategory === category.slug &&
+                selectedCategory === category &&
                   styles.selectedButtonText,
               ]}
             >
-              {category.name}
+              {category}
             </Text>
           </Pressable>
         ))}
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: '500',
+    textTransform: 'capitalize',
   },
 
   selectedButtonText: {

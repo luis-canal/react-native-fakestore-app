@@ -21,7 +21,7 @@ export default function ProductCard({ product, onPress }) {
       style={styles.container}
     >
       <Image
-        source={{ uri: product.thumbnail }}
+        source={{ uri: product.image }}
         style={styles.image}
         resizeMode="contain"
       />

@@ -50,16 +50,11 @@ export function AuthProvider({ children }) {
   }, []);
 
   const entrar = useCallback(async (credentials) => {
-    const result = await login(credentials);
-    const { accessToken } = result;
-    const user = Object.fromEntries(
-      Object.entries(result).filter(
-        ([key]) => key !== 'accessToken' && key !== 'refreshToken',
-      ),
-    );
+    const { token: accessToken } = await login(credentials);
+    const user = { username: credentials.username };
 
     if (!accessToken) {
-      throw new Error('A resposta de autenticação não incluiu um accessToken.');
+      throw new Error('A resposta de autenticação não incluiu um token.');
     }
 
     const nextSession = {

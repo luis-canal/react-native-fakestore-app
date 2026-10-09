@@ -1,6 +1,6 @@
 # FakeStoreApp
 
-Aplicativo de loja desenvolvido com React Native e Expo. O app permite fazer login, navegar por produtos e categorias e consultar os detalhes dos produtos. Os dados de autenticação e catálogo são obtidos da API [DummyJSON](https://dummyjson.com/).
+Aplicativo de loja desenvolvido com React Native e Expo. O app permite fazer login, navegar por produtos e categorias e consultar os detalhes dos produtos. Os dados de autenticação e catálogo são obtidos da [Fake Store API](https://fakestoreapi.com/).
 
 ## Requisitos
 
@@ -36,12 +36,12 @@ Aplicativo de loja desenvolvido com React Native e Expo. O app permite fazer log
 
 ## Login e usuários disponíveis
 
-O login é validado pela API DummyJSON. Na tela de login, use o botão **Preencher acesso** para preencher automaticamente as credenciais de demonstração e depois toque em **Entrar**:
+O login é validado pela Fake Store API. Na tela de login, use o botão **Preencher acesso** para preencher automaticamente as credenciais de demonstração e depois toque em **Entrar**:
 
-- **Usuário:** `emilys`
-- **Senha:** `emilyspass`
+- **Usuário:** `mor_2314`
+- **Senha:** `83r5^_`
 
-Esse botão aparece somente no ambiente de desenvolvimento. Para consultar os usuários disponibilizados pela API, acesse [`https://dummyjson.com/users`](https://dummyjson.com/users); cada registro inclui o nome de usuário. A API de autenticação aceita as credenciais dos usuários de demonstração.
+Esse botão aparece somente no ambiente de desenvolvimento. Para consultar os usuários disponibilizados pela API, acesse [`https://fakestoreapi.com/users`](https://fakestoreapi.com/users); cada registro inclui o nome de usuário e a senha. A API de autenticação aceita as credenciais dos usuários de demonstração.
 
 ## Integrantes
 

@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import InfoGroupScreen from '../screens/InfoGroupScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import { useAuthContext } from '../context/authContext';
 import { colors } from '../styles/colors';
 import HomeHeader from '../components/HomeHeader';
@@ -65,6 +66,22 @@ export default function AppNavigator() {
               options={{
                 headerShown: true,
                 title: 'Informações do grupo',
+                headerTitleAlign: 'center',
+                headerStyle: { backgroundColor: colors.background },
+                headerTintColor: colors.primary,
+                headerTitleStyle: {
+                  color: colors.textPrimary,
+                  fontFamily: 'Inter',
+                  fontWeight: '700',
+                },
+              }}
+            />
+            <Stack.Screen
+              name="ProductDetails"
+              component={ProductDetailsScreen}
+              options={{
+                headerShown: true,
+                title: 'Detalhes do Produto',
                 headerTitleAlign: 'center',
                 headerStyle: { backgroundColor: colors.background },
                 headerTintColor: colors.primary,
